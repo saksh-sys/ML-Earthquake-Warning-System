@@ -25,7 +25,7 @@ map_center = [0, 0]  # Initial map center
 map_zoom = 2  # Initial zoom level
 
 # Display map
-m = folium.Map([38.8934, -76.9470], tiles=’stamentoner’, zoom_start=12)
+m = folium.Map([38.8934, -76.9470], tiles='stamentoner', zoom_start=12)
 st.markdown(m.repr_html(), unsafe_allow_html =True)
 
 #my_map = folium.Map(location=map_center, zoom_start=map_zoom)
