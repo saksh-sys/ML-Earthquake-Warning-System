@@ -42,3 +42,40 @@ if st.button('Predict Magnitude'):
     features = [latitude, longitude, depth, year, day_of_year, hour]
     prediction = predict_earthquake(features)
     st.write(f'Predicted Magnitude: {prediction[0]}')
+
+# Add a second page for contributors
+if st.button('Contributors'):
+    st.header("Contributors")
+    contributors = {
+        "Saksham Raj Gupta": {
+            "email": "anshvarshney3@gmail.com",
+            "github_link": "https://github.com/sakshsys",
+            "details": {
+                "Reg No": "12016513",
+                "University": "Lovely Professional University"
+            }
+        },
+        "Amardeep Singh Gujraal": {
+            "email": "gujraal2006@gmail.com",
+            "github_link": "https://github.com/amartist",
+            "details": {
+                "Reg No": "12006933",
+                "University": "Lovely Professional University"
+            }
+        },
+        "Royal Chaudhary": {
+            "email": "roychaudhary1999@icloud.com",
+            "github_link": "https://github.com/Royal-Chaudhary",
+            "details": {
+                "Reg No": "12016265",
+                "University": "Lovely Professional University"
+            }
+        },
+    }
+    contributor_names = st.multiselect('Select Contributor', list(contributors.keys()))
+    for name in contributor_names:
+        st.subheader(name)
+        st.write(f"Email: {contributors[name]['email']}")
+        st.write(f"GitHub: {contributors[name]['github_link']}")
+        st.write("Details:")
+        st.write(contributors[name]['details'])
