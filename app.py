@@ -34,8 +34,15 @@ m = folium.Map(location=[latitude, longitude], zoom_start=6)
 # Add marker for selected location
 #folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
 
-# Add a click event to the map
-folium.Marker([0, 0], tooltip='Click to get coordinates').add_to(m)
+# Define a function to handle the click event
+def handle_click(event):
+    # Get the latitude and longitude coordinates of the clicked location
+    lat, lon = event.latlng
+    # Display the coordinates in Streamlit
+    st.write(f'Clicked Latitude: {lat}, Clicked Longitude: {lon}')
+
+# Add a click event to the map using ClickForMarker
+folium.ClickForMarker(popup='Click to get coordinates', callback=handle_click).add_to(mymap)
 
 # Display the map in Streamlit app
 folium_static(m)
