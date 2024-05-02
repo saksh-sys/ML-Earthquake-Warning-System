@@ -32,7 +32,10 @@ hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
 m = folium.Map(location=[latitude, longitude], zoom_start=6)
 
 # Add marker for selected location
-folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
+#folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
+
+# Add a click event to the map
+folium.Marker([0, 0], tooltip='Click to get coordinates').add_to(m)
 
 # Display the map in Streamlit app
 folium_static(m)
