@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 from sklearn.preprocessing import StandardScaler
+import folium  # Import Folium for map visualization
 
 # Load your trained model and scaler
 model = load('XG_Boost_model.joblib')
@@ -18,7 +19,19 @@ def predict_earthquake(features):
 st.title('Earthquake Magnitude Prediction')
 st.write('This application predicts the magnitude of earthquakes based on input features.')
 
-# Input fields
+# Create a map for location selection
+st.header('Select Location on Map')
+map_center = [0, 0]  # Initial map center
+map_zoom = 2  # Initial zoom level
+
+# Display map
+my_map = folium.Map([longitude, latitude], tiles='stamentoner',   zoom_start=12)
+open(map_path, 'wb').write(m.repr_html())
+#my_map = folium.Map(location=map_center, zoom_start=map_zoom)
+folium.Marker(location=map_center, popup='Selected Location').add_to(my_map)
+st.markdown(my_map._repr_html_(), unsafe_allow_html=True)
+
+# Get location from user
 latitude = st.number_input('Latitude', value=0.0)
 longitude = st.number_input('Longitude', value=0.0)
 depth = st.number_input('Depth', value=0.0)
@@ -31,32 +44,3 @@ if st.button('Predict Magnitude'):
     features = [latitude, longitude, depth, year, day_of_year, hour]
     prediction = predict_earthquake(features)
     st.write(f'Predicted Magnitude: {prediction[0]}')
-
-
-st.header("*Contributors*")
-        contributors = {
-            "ANSH VARSHNEY": {"email": "anshvarshney3@gmail.com", 
-                              "github_link": "https://github.com/ansh0707",
-                              "details":{
-                                  "Reg No" : "12006893",
-                                  "University":"Lovely Professional University"
-                              }},
-            "SARA BORA": {"email": "sarabora420@gmail.com", 
-                          "github_link": "https://github.com/sara-bora",
-                          "details":{
-                              "Reg No" : "12013194",
-                              "University":"Lovely Professional University"
-                          }},
-            "SARTHAK MISHRA": {"email": "sam4sarthak@gmail.com",
-                                "github_link": "https://github.com/SarthakMishra0307",
-                                "details":{
-                                    "Reg No" : "12018433",
-                                    "University":"Lovely Professional University"
-                                }},
-            "SATYAM DUBEY": {"email": "satyamdubey2988@gmail.com",
-                             "github_link": "https://github.com/dubeysatyam2002",
-                             "details":{
-                                    "Reg No" : "12014267",
-                                    "University":"Lovely Professional University"
-                            }},
-        }
