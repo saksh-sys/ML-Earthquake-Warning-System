@@ -4,8 +4,7 @@ from joblib import load
 from sklearn.preprocessing import StandardScaler
 import folium
 from streamlit_folium import folium_static
-import numpy as np 
-
+import numpy as np  # Add numpy import
 
 # Define and load your scaler and model
 scaler = load('scaler.joblib')
@@ -35,7 +34,7 @@ if page == 'Model':
     hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
 
     # Create a Folium map
-    m = folium.Map(location=[latitude, longitude], zoom_start=6)
+    m = folium.Map(location=[latitude, longitude], zoom_start=6, max_bounds=True)
 
     # Add marker for selected location
     folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
