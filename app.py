@@ -1,13 +1,4 @@
 import streamlit as st
-import pandas as pd
-from joblib import load
-from sklearn.preprocessing import StandardScaler
-import folium
-from streamlit_folium import folium_static
-
-# Load your trained model and scaler
-model = load('XG_Boost_model.joblib')
-scaler = load('scaler.joblib')  # Assuming you have this saved now
 
 def predict_earthquake(features):
     # Scale features
@@ -51,7 +42,7 @@ elif page == 'Contributors':
     st.title('Contributors')
     contributors = {
         "Saksham Raj Gupta": {
-            "email": "anshvarshney3@gmail.com",
+            "email": "sakshamrajg@gmail.com",
             "github_link": "https://github.com/sakshsys",
             "details": {
                 "Reg No": "12016513",
@@ -75,10 +66,23 @@ elif page == 'Contributors':
             }
         },
     }
-    contributor_names = st.multiselect('Select Contributor', list(contributors.keys()))
-    for name in contributor_names:
-        st.subheader(name)
-        st.write(f"Email: {contributors[name]['email']}")
-        st.write(f"GitHub: {contributors[name]['github_link']}")
-        st.write("Details:")
-        st.write(contributors[name]['details'])
+
+    for name, info in contributors.items():
+        st.markdown(
+            '''
+            <style>
+            div[data-testid="stExpander"] details div[data-testid="stExpanderContent"] summary {
+                font-size: 1.2rem;
+                color: blue;
+                /* Add any other styles you want */
+            }
+            </style>
+            ''',
+            unsafe_allow_html=True
+        )
+
+        with st.expander(name):
+            st.write(f"**Email:** {info['email']}", unsafe_allow_html=True)
+            st.write(f"**GitHub:** [{name}]({info['github_link']})")
+            st.write(f"**Reg No:** {info['details']['Reg No']}")
+            st.write(f"**University:** {info['details']['University']}")
