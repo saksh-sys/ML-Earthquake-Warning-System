@@ -24,7 +24,6 @@ longitude = st.number_input('Longitude', value=0.0)
 depth = st.number_input('Depth', value=0.0)
 year = st.number_input('Year', min_value=2000, max_value=2023, value=2021)
 day_of_year = st.number_input('Day of the Year', min_value=1, max_value=365, value=1)
-quarter = st.number_input('Quarter', min_value=1, max_value=4, value=1)
 hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
 
 # Button to make prediction
