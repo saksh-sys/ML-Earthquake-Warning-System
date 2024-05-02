@@ -29,7 +29,7 @@ m = folium.Map([38.8934, -76.9470], tiles='stamentoner', zoom_start=12)
 st.markdown(m.repr_html(), unsafe_allow_html =True)
 
 #my_map = folium.Map(location=map_center, zoom_start=map_zoom)
-folium.Marker(location=map_center, popup='Selected Location').add_to(my_map)
+folium.Marker(location=map_center, popup='Selected Location').add_to(m)
 #st.markdown(my_map._repr_html_(), unsafe_allow_html=True)
 
 # Get location from user
