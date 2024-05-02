@@ -17,35 +17,38 @@ def predict_earthquake(features):
     return prediction
 
 # Streamlit page configuration
-st.title('Earthquake Magnitude Prediction')
-st.write('This application predicts the magnitude of earthquakes based on input features.')
+st.sidebar.title('Navigation')
+page = st.sidebar.selectbox('Select a page', ['Model', 'Contributors'])
 
-# Input fields
-latitude = st.number_input('Latitude', value=0.0)
-longitude = st.number_input('Longitude', value=0.0)
-depth = st.number_input('Depth', value=0.0)
-year = st.number_input('Year', min_value=2000, max_value=2023, value=2021)
-day_of_year = st.number_input('Day of the Year', min_value=1, max_value=365, value=1)
-hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
+if page == 'Model':
+    st.title('Earthquake Magnitude Prediction')
+    st.write('This application predicts the magnitude of earthquakes based on input features.')
 
-# Create a Folium map
-m = folium.Map(location=[latitude, longitude], zoom_start=6)
+    # Input fields
+    latitude = st.number_input('Latitude', value=0.0)
+    longitude = st.number_input('Longitude', value=0.0)
+    depth = st.number_input('Depth', value=0.0)
+    year = st.number_input('Year', min_value=2000, max_value=2023, value=2021)
+    day_of_year = st.number_input('Day of the Year', min_value=1, max_value=365, value=1)
+    hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
 
-# Add marker for selected location
-folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
+    # Create a Folium map
+    m = folium.Map(location=[latitude, longitude], zoom_start=6)
 
-# Display the map in Streamlit app
-folium_static(m)
+    # Add marker for selected location
+    folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
 
-# Button to make prediction
-if st.button('Predict Magnitude'):
-    features = [latitude, longitude, depth, year, day_of_year, hour]
-    prediction = predict_earthquake(features)
-    st.write(f'Predicted Magnitude: {prediction[0]}')
+    # Display the map in Streamlit app
+    folium_static(m)
 
-# Add a second page for contributors
-if st.button('Contributors'):
-    st.header("Contributors")
+    # Button to make prediction
+    if st.button('Predict Magnitude'):
+        features = [latitude, longitude, depth, year, day_of_year, hour]
+        prediction = predict_earthquake(features)
+        st.write(f'Predicted Magnitude: {prediction[0]}')
+
+elif page == 'Contributors':
+    st.title('Contributors')
     contributors = {
         "Saksham Raj Gupta": {
             "email": "anshvarshney3@gmail.com",
