@@ -35,7 +35,7 @@ m = folium.Map(location=[latitude, longitude], zoom_start=6)
 folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
 
 # Display the map in Streamlit app
-folium_dynamic(m)
+folium_static(m)
 
 # Button to make prediction
 if st.button('Predict Magnitude'):
