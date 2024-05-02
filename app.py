@@ -4,7 +4,12 @@ from joblib import load
 from sklearn.preprocessing import StandardScaler
 import folium
 from streamlit_folium import folium_static
+import numpy as np 
 
+
+# Define and load your scaler and model
+scaler = load('scaler.joblib')
+model = load('XG_Boost_model.joblib')
 
 def predict_earthquake(features):
     # Scale features
