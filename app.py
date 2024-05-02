@@ -4,7 +4,7 @@ from joblib import load
 from sklearn.preprocessing import StandardScaler
 
 # Load your trained model and scaler
-model = load('random_forest_model.joblib')
+model = load('XG_Boost_model.joblib')
 scaler = load('scaler.joblib')  # Assuming you have this saved now
 
 def predict_earthquake(features):
