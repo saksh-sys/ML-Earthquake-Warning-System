@@ -25,11 +25,12 @@ map_center = [0, 0]  # Initial map center
 map_zoom = 2  # Initial zoom level
 
 # Display map
-my_map = folium.Map([longitude, latitude], tiles='stamentoner',   zoom_start=12)
-open(map_path, 'wb').write(m.repr_html())
-#my_map = folium.Map(location=map_center, zoom_start=map_zoom)
-folium.Marker(location=map_center, popup='Selected Location').add_to(my_map)
-st.markdown(my_map._repr_html_(), unsafe_allow_html=True)
+# my_map = folium.Map([longitude, latitude], tiles='stamentoner',   zoom_start=12)
+# open(map_path, 'wb').write(m.repr_html())
+# #my_map = folium.Map(location=map_center, zoom_start=map_zoom)
+# folium.Marker(location=map_center, popup='Selected Location').add_to(my_map)
+# st.markdown(my_map._repr_html_(), unsafe_allow_html=True)
+# st.markdown('<iframe src="/map.html"> </iframe>')
 
 # Get location from user
 latitude = st.number_input('Latitude', value=0.0)
