@@ -19,7 +19,12 @@ def predict_earthquake(features):
 
 # Streamlit page configuration
 st.sidebar.title('Navigation')
-page = st.sidebar.selectbox('Select a page', ['Model', 'Contributors'])
+selected =option_menu(
+            menu_title=None,
+            options=["TEXT", "IMAGE", "CONTACT"],
+            icons=["cursor-text","card-image","person-lines-fill"],
+            default_index=0,
+        )
 
 if page == 'Model':
     st.title('Earthquake Magnitude Prediction')
