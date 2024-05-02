@@ -4,3 +4,4 @@ pandas
 scikit-learn
 xgboost
 Folium
+streamlit_folium
