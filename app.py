@@ -42,7 +42,7 @@ def handle_click(event):
     st.write(f'Clicked Latitude: {lat}, Clicked Longitude: {lon}')
 
 # Add a click event to the map using ClickForMarker
-folium.ClickForMarker(popup='Click to get coordinates', callback=handle_click).add_to(mymap)
+folium.ClickForMarker(popup='Click to get coordinates', callback=handle_click).add_to(m)
 
 # Display the map in Streamlit app
 folium_static(m)
