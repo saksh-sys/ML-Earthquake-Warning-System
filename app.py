@@ -1,4 +1,10 @@
 import streamlit as st
+import pandas as pd
+from joblib import load
+from sklearn.preprocessing import StandardScaler
+import folium
+from streamlit_folium import folium_static
+
 
 def predict_earthquake(features):
     # Scale features
