@@ -28,6 +28,6 @@ hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
 
 # Button to make prediction
 if st.button('Predict Magnitude'):
-    features = [latitude, longitude, depth, year, day_of_year, quarter, hour]
+    features = [latitude, longitude, depth, year, day_of_year, hour]
     prediction = predict_earthquake(features)
     st.write(f'Predicted Magnitude: {prediction[0]}')
