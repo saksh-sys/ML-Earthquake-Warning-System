@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
 import pandas as pd
 from joblib import load
 from sklearn.preprocessing import StandardScaler
@@ -19,14 +18,8 @@ def predict_earthquake(features):
     return prediction
 
 # Streamlit page configuration
-with st.sidebar:
-        selected =option_menu(
-            menu_title=None,
-            options=["TEXT", "IMAGE", "CONTACT"],
-            icons=["cursor-text","card-image","person-lines-fill"],
-            default_index=0,
-        )
-
+st.sidebar.title('Navigation')
+page = st.sidebar.selectbox('Select a page', ['Model', 'Contributors'])
 
 if page == 'Model':
     st.title('Earthquake Magnitude Prediction')
@@ -41,65 +34,3 @@ if page == 'Model':
     hour = st.number_input('Hour of the Day', min_value=0, max_value=23, value=12)
 
     # Create a Folium map
-    m = folium.Map(location=[latitude, longitude], zoom_start=6, max_bounds=True)
-
-    # Add marker for selected location
-    folium.Marker([latitude, longitude], popup='Selected Location').add_to(m)
-
-    # Display the map in Streamlit app
-    folium_static(m)
-
-    # Button to make prediction
-    if st.button('Predict Magnitude'):
-        features = [latitude, longitude, depth, year, day_of_year, hour]
-        prediction = predict_earthquake(features)
-        st.write(f'Predicted Magnitude: {prediction[0]}')
-
-elif page == 'Contributors':
-    st.title('Contributors')
-    contributors = {
-        "Saksham Raj Gupta": {
-            "email": "sakshamrajg@gmail.com",
-            "github_link": "https://github.com/sakshsys",
-            "details": {
-                "Reg No": "12016513",
-                "University": "Lovely Professional University"
-            }
-        },
-        "Amardeep Singh Gujraal": {
-            "email": "gujraal2006@gmail.com",
-            "github_link": "https://github.com/amartist",
-            "details": {
-                "Reg No": "12006933",
-                "University": "Lovely Professional University"
-            }
-        },
-        "Royal Chaudhary": {
-            "email": "roychaudhary1999@icloud.com",
-            "github_link": "https://github.com/Royal-Chaudhary",
-            "details": {
-                "Reg No": "12016265",
-                "University": "Lovely Professional University"
-            }
-        },
-    }
-
-    for name, info in contributors.items():
-        st.markdown(
-            '''
-            <style>
-            div[data-testid="stExpander"] details div[data-testid="stExpanderContent"] summary {
-                font-size: 1.2rem;
-                color: blue;
-                /* Add any other styles you want */
-            }
-            </style>
-            ''',
-            unsafe_allow_html=True
-        )
-
-        with st.expander(name):
-            st.write(f"**Email:** {info['email']}", unsafe_allow_html=True)
-            st.write(f"**GitHub:** [{name}]({info['github_link']})")
-            st.write(f"**Reg No:** {info['details']['Reg No']}")
-            st.write(f"**University:** {info['details']['University']}")
