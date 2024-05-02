@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from joblib import load
 from sklearn.preprocessing import StandardScaler
-import folium  # Import Folium for map visualization
 
 # Load your trained model and scaler
 model = load('XG_Boost_model.joblib')
@@ -19,15 +18,10 @@ def predict_earthquake(features):
 st.title('Earthquake Magnitude Prediction')
 st.write('This application predicts the magnitude of earthquakes based on input features.')
 
-# Create a map for location selection
-st.header('Select Location on Map')
-map_center = [0, 0]  # Initial map center
-map_zoom = 2  # Initial zoom level
-
-# Display map
-my_map = folium.Map(location=map_center, zoom_start=map_zoom)
-folium.Marker(location=map_center, popup='Selected Location').add_to(my_map)
-st.markdown(my_map._repr_html_(), unsafe_allow_html=True)
+# Map for selecting location
+selected_location = st.map()
+latitude_from_map = selected_location.latlng[0] if selected_location else 0.0
+longitude_from_map = selected_location.latlng[1] if selected_location else 0.0
 
 # Get location from user
 latitude = st.number_input('Latitude', value=0.0)
