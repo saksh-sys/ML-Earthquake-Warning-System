@@ -53,7 +53,7 @@ elif page == 'Contributors':
     contributors = {
         "Saksham Raj Gupta": {
             "email": "sakshamrajg@gmail.com",
-            "github_link": "https://github.com/sakshsys",
+            "github_link": "https://github.com/saksh-sys",
             "details": {
                 "Reg No": "12016513",
                 "University": "Lovely Professional University"
